@@ -49,14 +49,14 @@ class TestPractical:
         Encryption test.
         """
         for source, expect, key in self.vectors:
-            assert expect == Practical(True).encrypt(source, key)
+            assert expect == Practical().encrypt(source, key)
 
     def test_decrypt(self):
         """
         Decryption test.
         """
         for expect, source, key in self.vectors:
-            assert expect == Practical(True).decrypt(source, key)
+            assert expect == Practical().decrypt(source, key)
 
     def test_generate(self):
         """
