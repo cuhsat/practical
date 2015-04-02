@@ -63,7 +63,7 @@ class Practical(object):
         def lookup(symbol, table="".join([x for y in self.table for x in y])):
             i = table.index(symbol)
             x = i % 6
-            y = i / 6
+            y = i // 6
 
             return (x, y)
 
