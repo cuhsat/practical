@@ -18,13 +18,8 @@ An implementation in Python is provided.
 * `-l` Shows the license
 * `-v` Shows the version
 
-### Testing
-```$ practical_test.py```
-
-> For testing the _py.test_ modul is required.
-
-## Usage As Library
-This Python modul exports the `Practical` class.
+## Usage as library
+The Python modul exports the `Practical` class.
 
 > Please note, that the used key must have the same length as the encrypted /
 > decrypted text and must *never be used twice*.
@@ -49,6 +44,11 @@ plaintext, key = "Hello", practical.generate(5)
 encrypted = practical.encrypt(plaintext, key)
 decrypted = practical.decrypt(encrypted, key)
 ```
+
+## Tests
+```$ practical_test.py```
+
+> For testing the _py.test_ modul is required.
 
 ## License
 This is free and unencumbered software released into the public domain.
