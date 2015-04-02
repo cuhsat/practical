@@ -45,7 +45,7 @@ encrypted = practical.encrypt(plaintext, key)
 decrypted = practical.decrypt(encrypted, key)
 ```
 
-## Tests
+### Unit Tests
 ```$ practical_test.py```
 
 > For testing the _py.test_ modul is required.
