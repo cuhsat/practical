@@ -1,4 +1,4 @@
-# Practical ![](https://travis-ci.org/cuhsat/practical.png)
+# Practical ![Build](https://travis-ci.org/cuhsat/practical.svg)
 The Practical Cipher `0.1.0`
 
 A one-time pad variant for easy manual application. Based on a 6x6 conversion
