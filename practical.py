@@ -99,8 +99,8 @@ class Practical(object):
         block = ""
 
         for i in range(size):
-            x = sum([ord(n[:1]) for n in os.urandom(6)]) % 6
-            y = sum([ord(n[:1]) for n in os.urandom(6)]) % 6
+            x = sum([ord(n) for n in os.urandom(6)]) % 6
+            y = sum([ord(n) for n in os.urandom(6)]) % 6
 
             block += self.table[y][x]
 
