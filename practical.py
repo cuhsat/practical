@@ -27,6 +27,7 @@ For more information, please refer to <http://unlicense.org>
 """
 import os
 import re
+import random
 import sys
 
 
@@ -61,11 +62,7 @@ class Practical(object):
             raise Exception("Key length does not match")
 
         def lookup(symbol, table="".join([x for y in self.table for x in y])):
-            i = table.index(symbol)
-            x = i % 6
-            y = i // 6
-
-            return (x, y)
+            return reversed(divmod(table.index(symbol), 6))
 
         output = ""
 
@@ -96,11 +93,11 @@ class Practical(object):
         """
         Returns a new random key block.
         """
-        block = ""
+        block, r = "", random.SystemRandom()
 
         for i in range(size):
-            x = sum([ord(n) for n in os.urandom(6)]) % 6
-            y = sum([ord(n) for n in os.urandom(6)]) % 6
+            x = r.randint(0, 5)
+            y = r.randint(0, 5)
 
             block += self.table[y][x]
 
@@ -141,7 +138,7 @@ def main(script, command="--help", key=None, *text):
             print(Practical().decrypt(" ".join(text), key))
 
         elif command in ("-g", "--generate"):
-            print(Practical().generate())
+            print(Practical().generate(5))
 
         else:
             print("Unknown command or parameter not given.")
