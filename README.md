@@ -3,7 +3,7 @@ The Practical Cipher `0.1.0`
 
 A one-time pad variant for easy manual application. Based on a 6x6 conversion
 table supporting alphanumeric symbols. Random key generation can be done with
-a normal gambling dice (d6).
+one normal gambling dice (d6).
 
 An implementation in Python is provided.
 
@@ -18,11 +18,17 @@ An implementation in Python is provided.
 * `-l` Shows the license
 * `-v` Shows the version
 
-## Usage as library
+### Example
+```$ practical.py -e QWERTASDFG HELLO WORLD```
+
+```$ practical.py -d QWERTASDFG XUJW7 W6OKJ```
+
+```$ practical.py -g```
+
+## Usage as a library
 The Python modul exports the `Practical` class.
 
-> Please note, that the used key must have the same length as the encrypted /
-> decrypted text and must *never be used twice*.
+> Please note, that the key must have the same length as the text.
 
 ### Practical.encrypt(text, key)
 Returns the given `text` encrypted with the given `key` as a string.
