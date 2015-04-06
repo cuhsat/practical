@@ -52,9 +52,9 @@ decrypted = practical.decrypt(encrypted, key)
 ```
 
 ### Unit Tests
-```$ practical_test.py```
+For testing the _py.test_ modul is required.
 
-> For testing the _py.test_ modul is required.
+```$ practical_test.py```
 
 ## License
 This is free and unencumbered software released into the public domain.
