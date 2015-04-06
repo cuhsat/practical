@@ -18,7 +18,7 @@ An implementation in Python is provided.
 * `-l` Shows the license
 * `-v` Shows the version
 
-### Example
+### Examples
 ```$ practical.py -e QWERTASDFG HELLO WORLD```
 
 ```$ practical.py -d QWERTASDFG XUJW7 W6OKJ```
@@ -52,7 +52,7 @@ decrypted = practical.decrypt(encrypted, key)
 ```
 
 ### Unit Tests
-For testing the _py.test_ modul is required.
+For testing the [pytest](https://pytest.org/) modul is required.
 
 ```$ practical_test.py```
 
