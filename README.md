@@ -14,6 +14,8 @@ The conversion table uses a 6x6 alphanumeric matrix. It is filled from left
 to right and from top to bottom with the uppercase letters of the alphabet
 from `A` to `Z` and than the numbers from `0` to `9`.
 
+> Please note, the _x_ and _y_ indices start at zero.
+
 The conversion table with the default symbol arrangement:
 ```
   | 0 1 2 3 4 5
@@ -25,8 +27,6 @@ The conversion table with the default symbol arrangement:
 4 | Y Z 0 1 2 3
 5 | 4 5 6 7 8 9
 ```
-> Please note, the _x_ and _y_ indices start at zero.
-
 ### Encryption
 Encryption is done in six easy steps:
 
@@ -37,7 +37,7 @@ Encryption is done in six easy steps:
 5. Divide the _y_ position by 6 and use the remainder as the new _y_ position
 6. Convert the so calculated _x_ and _y_ positions to the cipher text symbol
 
-_Repeat with the next symbol if needed._
+Repeat with the next symbol if needed.
 
 #### Example
 ```
@@ -61,7 +61,7 @@ Decryption is done in six easy steps:
 5. Divide the _y_ position by 6 and use the remainder as the new _y_ position
 6. Convert the so calculated _x_ and _y_ positions to the plain text symbol
 
-_Repeat with the next symbol if needed._
+Repeat with the next symbol if needed.
 
 #### Example
 ```
@@ -76,13 +76,13 @@ _Repeat with the next symbol if needed._
 ```
 
 ### Key Generation
-Key generation is done in three easy steps.
+Key generation is done in three easy steps:
 
 1. Throw a six-sided gambling dice, use the result minus 1 as the _x_ position
 2. Throw a six-sided gambling dice, use the result minus 1 as the _y_ position
 3. Convert the _x_ and _y_ positions to the key symbol
 
-_Repeat with the next symbol if needed._
+Repeat with the next symbol if needed.
 
 > It is advised to separate the key into blocks of five symbols for better
 > readability and therefor a lesser chance of encryption/decryption errors.
@@ -99,8 +99,8 @@ There are a few points to consider, to ensure maximal confidentiality:
 ```$ practical.py COMMAND [KEY TEXT...]```
 
 ### Commands
-* `-e` Encrypts the given text
 * `-d` Decrypts the given text
+* `-e` Encrypts the given text
 * `-g` Generates a random key block
 * `-h` Shows the usage text
 * `-l` Shows the license
@@ -116,13 +116,15 @@ There are a few points to consider, to ensure maximal confidentiality:
 ## Usage As Library
 The Python modul exports the `Practical` class.
 
-> Please note, that the key must have the same length as the text.
-
 ### Practical.encrypt(text, key)
 Returns the given `text` encrypted with the given `key` as a string.
 
+> Please note, that the key must have the same length as the text.
+
 ### Practical.decrypt(text, key)
 Returns the given `text` decrypted with the given `key` as a string.
+
+> Please note, that the key must have the same length as the text.
 
 ### Practical.generate(size)
 Returns a new random key block of the given `size` as a string.

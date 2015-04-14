@@ -109,8 +109,8 @@ def main(script, command="--help", key=None, *text):
     Usage: %s COMMAND [KEY TEXT...]
 
     Commands:
-      -e --encrypt    Encrypts the given text
       -d --decrypt    Decrypts the given text
+      -e --encrypt    Encrypts the given text
       -g --generate   Generates a random key block
 
       -h --help       Shows this text
@@ -131,11 +131,11 @@ def main(script, command="--help", key=None, *text):
         elif command in ("-v", "--version"):
             print("Practical Cipher " + __version__)
 
-        elif command in ("-e", "--encrypt") and key and text:
-            print(Practical().encrypt(" ".join(text), key))
-
         elif command in ("-d", "--decrypt") and key and text:
             print(Practical().decrypt(" ".join(text), key))
+
+        elif command in ("-e", "--encrypt") and key and text:
+            print(Practical().encrypt(" ".join(text), key))
 
         elif command in ("-g", "--generate"):
             print(Practical().generate(5))
