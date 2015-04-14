@@ -42,27 +42,43 @@ class TestPractical:
     """
     The Practical Cipher unit tests.
     """
-    vectors = [("HELLOWORLD", "XUJW7W6OKJ", "QWERTASDFG")]
+    vectors = [
+        ("AAAAAA", "999999", "999999"),
+        ("999999", "999999", "AAAAAA"),
+        ("A9A9A9", "A9A9A9", "AAAAAA"),
+        ("9A9A9A", "9A9A9A", "AAAAAA"),
+        ("A9A9A9", "999999", "9A9A9A"),
+        ("ABCDEF", "AHOV29", "AGMSY4"),
+        ("GHIJKL", "HOV29A", "BHNTZ5"),
+        ("MNOPQR", "OV29AH", "CIOU06"),
+        ("STUVWX", "V29AHO", "DJPV17"),
+        ("YZ0123", "29AHOV", "EKQW28"),
+        ("456789", "9AHOV2", "FLRX39"),
+        ("AHOV29", "FR3FR3", "FKPUZ4"),
+        ("ABCDEF", "468468", "456789"),
+        ("456789", "468468", "ABCDEF"),
+        ("HELLOX", "YV225E", "XXXXXX")
+    ]
 
     def test_encrypt(self):
         """
         Encryption test.
         """
         for source, expect, key in self.vectors:
-            assert expect == Practical().encrypt(source, key)
+            assert Practical().encrypt(source, key) == expect
 
     def test_decrypt(self):
         """
         Decryption test.
         """
         for expect, source, key in self.vectors:
-            assert expect == Practical().decrypt(source, key)
+            assert Practical().decrypt(source, key) == expect
 
     def test_generate(self):
         """
         Key generation test.
         """
-        assert re.match("^[A-Z0-9]{32}$", Practical().generate(32))
+        assert re.match("^[A-Z0-9]{6}$", Practical().generate(6))
 
 
 if __name__ == "__main__":
