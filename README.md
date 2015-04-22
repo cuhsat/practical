@@ -11,8 +11,8 @@ An implementation in [Python](https://www.python.org) is provided.
 
 ### Conversion Table
 The conversion table uses a 6x6 alphanumeric matrix. It is filled from left
-to right and from top to bottom with the uppercase letters of the alphabet
-from `A` to `Z` and than the numbers from `0` to `9`.
+to right and from top to bottom with the uppercase latin letters of the 
+alphabet from `A` to `Z` and than the numbers from `0` to `9`.
 
 > Please note, the _x_ and _y_ indices start at zero.
 
