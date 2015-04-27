@@ -87,6 +87,8 @@ Repeat with the next symbol if needed.
 > It is advised to separate the key into blocks of five symbols for better
 > readability and therefor a lesser chance of encryption/decryption errors.
 
+For more information on randomness, please see [1].
+
 ### Security Considerations
 There are a few points to consider, to ensure maximal confidentiality:
 
@@ -154,3 +156,6 @@ this software, either in source code form or as a compiled binary, for any
 purpose, commercial or non-commercial, and by any means.
 
 [Christian Uhsat](https://github.com/cuhsat)
+
+----
+[1] [Randomness for crypto](https://www.cs.berkeley.edu/~daw/rnd/)
