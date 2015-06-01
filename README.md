@@ -150,12 +150,12 @@ Returns a new random key page with the given `size`, `cols`, `rows` as string.
 ```python
 from practical import Practical
 
-practical = Practical()
+cipher = Practical()
 
-text, key = "Hello", practical.generate_block(5)
+text, key = "Hello", cipher.generate_block(5)
 
-text = practical.encrypt(text, key)
-text = practical.decrypt(text, key)
+text = cipher.encrypt(text, key)
+text = cipher.decrypt(text, key)
 ```
 
 ### Unit Tests
@@ -170,7 +170,7 @@ Anyone is free to copy, modify, publish, use, compile, sell, or distribute
 this software, either in source code form or as a compiled binary, for any
 purpose, commercial or non-commercial, and by any means.
 
-[Christian Uhsat](https://github.com/cuhsat)
+[Christian Uhsat](https://github.com/cuhsat), June 2015
 
 ----
 [1] [Randomness for crypto](https://www.cs.berkeley.edu/~daw/rnd/)
