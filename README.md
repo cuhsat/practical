@@ -1,5 +1,5 @@
 # Practical ![Build](https://travis-ci.org/cuhsat/practical.svg)
-The Practical Cipher `0.1.1`
+The Practical Cipher `0.1.2`
 
 A one-time pad variant for easy manual application. Based on a 6x6 conversion
 table supporting alphanumeric symbols. Random key generation can be done with
@@ -11,7 +11,7 @@ An implementation in [Python](https://www.python.org) is provided.
 
 ### Conversion Table
 The conversion table uses a 6x6 alphanumeric matrix. It is filled from left
-to right and from top to bottom with the uppercase latin letters of the 
+to right and from top to bottom with the uppercase latin letters of the
 alphabet from `A` to `Z` and than the numbers from `0` to `9`.
 
 > Please note, the _x_ and _y_ indices start at zero.
@@ -89,13 +89,22 @@ Repeat with the next symbol if needed.
 
 For more information on randomness, please see [1].
 
+### Key Distribution
+Key distribution should be done directly after the key generation. It is
+advised to create the keys by hand. Write down the generated keys to two
+pieces of paper or books. The pages can be marked with page numbers for
+easier locating of the key blocks later.
+
+> It is advised to not use a computer system or any other electronic device to
+> generate or distribute the keys.
+
 ### Security Considerations
 There are a few points to consider, to ensure maximal confidentiality:
 
 * Every key *must* be kept secret
 * Every key *must not* be used twice
-* Every partner *must* destroy the key after usage
-* Only two partners *should* have the same key
+* Every peer *must* destroy the key directly after usage
+* Only two peers *should* have the same key
 
 ## Usage
 ```$ practical.py COMMAND [KEY TEXT...]```
@@ -103,33 +112,39 @@ There are a few points to consider, to ensure maximal confidentiality:
 ### Commands
 * `-d` Decrypts the given text
 * `-e` Encrypts the given text
-* `-g` Generates a random key block
+* `-b` Generates a random key block
+* `-p` Generates a random key page
 * `-h` Shows the usage text
 * `-l` Shows the license
 * `-v` Shows the version
 
 ### Examples
-```$ practical.py -e XXXXX HELLO```
+```$ practical.py -encrypt XXXXX HELLO```
 
-```$ practical.py -d XXXXX YV255```
+```$ practical.py -decrypt XXXXX YV255```
 
-```$ practical.py -g```
+```$ practical.py -generate-block```
+
+```$ practical.py -generate-page```
 
 ## Usage As Library
 The Python modul exports the `Practical` class.
 
 ### Practical.encrypt(text, key)
-Returns the given `text` encrypted with the given `key` as a string.
+Returns the given `text` encrypted with the given `key` as string.
 
 > Please note, that the key must have the same length as the text.
 
 ### Practical.decrypt(text, key)
-Returns the given `text` decrypted with the given `key` as a string.
+Returns the given `text` decrypted with the given `key` as string.
 
 > Please note, that the key must have the same length as the text.
 
-### Practical.generate(size)
-Returns a new random key block of the given `size` as a string.
+### Practical.generate_block(size)
+Returns a new random key block of the given `size` as string.
+
+### Practical.generate_page(size, cols, rows)
+Returns a new random key page with the given `size`, `cols`, `rows` as string.
 
 ### Example
 ```python
@@ -137,10 +152,10 @@ from practical import Practical
 
 practical = Practical()
 
-pt, k = "Hello", practical.generate(5)
+text, key = "Hello", practical.generate_block(5)
 
-ct = practical.encrypt(pt, k)
-pt = practical.decrypt(ct, k)
+text = practical.encrypt(text, key)
+text = practical.decrypt(text, key)
 ```
 
 ### Unit Tests

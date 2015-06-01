@@ -31,7 +31,7 @@ import random
 import sys
 
 
-__all__, __version__ = ["Practical"], "0.1.1"
+__all__, __version__ = ["Practical"], "0.1.2"
 
 
 class Practical(object):
@@ -89,7 +89,7 @@ class Practical(object):
         """
         return self.__crypt(text, key, lambda x, y: (x - y))
 
-    def generate(self, size):
+    def generate_block(self, size=5):
         """
         Returns a new random key block.
         """
@@ -103,19 +103,38 @@ class Practical(object):
 
         return block
 
+    def generate_page(self, size=5, cols=5, rows=15):
+        """
+        Returns a new random key page.
+        """
+        page = ""
+
+        for row in range(rows):
+            for col in range(cols):
+                page += self.generate_block(size) + " "
+            else:
+                page += "\n"
+
+            if (row + 1) % 5 == 0:
+                page += "\n"
+
+        return page.rstrip()
+
 
 def main(script, command="--help", key=None, *text):
     """
     Usage: %s COMMAND [KEY TEXT...]
 
     Commands:
-      -d --decrypt    Decrypts the given text
-      -e --encrypt    Encrypts the given text
-      -g --generate   Generates a random key block
+      -b --generate-block   Generates a random key block
+      -p --generate-page    Generates a random key page
 
-      -h --help       Shows this text
-      -l --license    Shows the license
-      -v --version    Shows the version
+      -d --decrypt   Decrypts the given text
+      -e --encrypt   Encrypts the given text
+
+      -h --help      Shows this text
+      -l --license   Shows the license
+      -v --version   Shows the version
 
     Report bugs to <christian@uhsat.de>
     """
@@ -137,8 +156,11 @@ def main(script, command="--help", key=None, *text):
         elif command in ("-e", "--encrypt") and key and text:
             print(Practical().encrypt(" ".join(text), key))
 
-        elif command in ("-g", "--generate"):
-            print(Practical().generate(5))
+        elif command in ("-b", "--generate-block"):
+            print(Practical().generate_block())
+
+        elif command in ("-p", "--generate-page"):
+            print(Practical().generate_page())
 
         else:
             print("Unknown command or parameter not given.")

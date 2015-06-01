@@ -74,11 +74,17 @@ class TestPractical:
         for expect, source, key in self.vectors:
             assert Practical().decrypt(source, key) == expect
 
-    def test_generate(self):
+    def test_generate_block(self):
         """
-        Key generation test.
+        Key block generation test.
         """
-        assert re.match("^[A-Z0-9]{6}$", Practical().generate(6))
+        assert re.match("^[A-Z0-9]+$", Practical().generate_block())
+
+    def test_generate_page(self):
+        """
+        Key page generation test.
+        """
+        assert re.match("^([A-Z0-9]|\s)+$", Practical().generate_page())
 
 
 if __name__ == "__main__":
