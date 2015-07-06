@@ -115,10 +115,10 @@ There are a few points to consider, to ensure maximal confidentiality:
 ```$ practical.py COMMAND [KEY TEXT...]```
 
 ### Commands
-* `-d, --decrypt` Decrypts the given text
-* `-e, --encrypt` Encrypts the given text
 * `-b, --generate-block` Generates a random key block
 * `-p, --generate-page ` Generates a random key page
+* `-d, --decrypt` Decrypts the given text
+* `-e, --encrypt` Encrypts the given text
 
 ### Examples
 ```$ practical.py --encrypt XXXXX HELLO```
