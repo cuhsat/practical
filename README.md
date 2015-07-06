@@ -5,7 +5,7 @@ A one-time pad variant for easy manual application. Based on a 6x6 conversion
 table supporting alphanumeric symbols. Random key generation can be done with
 one normal gambling dice (d6).
 
-An implementation in [Python](https://www.python.org) is provided.
+An implementation in pure [Python](https://www.python.org) is provided.
 
 ## Specification
 
@@ -18,14 +18,14 @@ alphabet from `A` to `Z` and than the numbers from `0` to `9`.
 
 The conversion table with the default symbol arrangement:
 ```
-  | 0 1 2 3 4 5
---+------------
-0 | A B C D E F
-1 | G H I J K L
-2 | M N O P Q R
-3 | S T U V W X
-4 | Y Z 0 1 2 3
-5 | 4 5 6 7 8 9
+    0 1 2 3 4 5
+
+0   A B C D E F
+1   G H I J K L
+2   M N O P Q R
+3   S T U V W X
+4   Y Z 0 1 2 3
+5   4 5 6 7 8 9
 ```
 ### Encryption
 Encryption is done in six easy steps:
@@ -98,6 +98,13 @@ easier locating of the key blocks later.
 > It is advised to not use a computer system or any other electronic device to
 > generate or distribute the keys.
 
+### Key Synchronization
+In order for both peers to refer to the same key, the keys to use must be 
+synchronized between each message. The simplest way to do so is using a key 
+book and referring to the used key by the page number.
+
+> The Python implementation provided has support for key page generation.
+
 ### Security Considerations
 There are a few points to consider, to ensure maximal confidentiality:
 
@@ -159,7 +166,7 @@ text = cipher.decrypt(text, key)
 ```
 
 ### Unit Tests
-For testing the [pytest](https://pytest.org/) modul is required.
+The [pytest](https://pytest.org/) modul is required for unit testing.
 
 ```$ practical_test.py [...]```
 
