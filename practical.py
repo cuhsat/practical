@@ -126,15 +126,15 @@ def main(script, command="--help", key=None, *text):
     Usage: %s COMMAND [KEY TEXT...]
 
     Commands:
-      -b --generate-block   Generates a random key block
-      -p --generate-page    Generates a random key page
+      -b, --generate-block   Generates a random key block
+      -p, --generate-page    Generates a random key page
 
-      -d --decrypt   Decrypts the given text
-      -e --encrypt   Encrypts the given text
+      -d, --decrypt   Decrypts the given text
+      -e, --encrypt   Encrypts the given text
 
-      -h --help      Shows this text
-      -l --license   Shows the license
-      -v --version   Shows the version
+      -h, --help      Shows this text
+      -l, --license   Shows the license
+      -v, --version   Shows the version
 
     Report bugs to <christian@uhsat.de>
     """
