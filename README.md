@@ -89,7 +89,7 @@ Repeat with the next symbol if needed.
 
 For more information on randomness, please see [1].
 
-### Key Distribution
+#### On Distribution
 Key distribution should be done directly after the key generation. It is
 advised to create the keys by hand. Write down the generated keys to two
 pieces of paper or books. The pages can be marked with page numbers for
@@ -98,12 +98,10 @@ easier locating of the key blocks later.
 > It is advised to not use a computer system or any other electronic device to
 > generate or distribute the keys.
 
-### Key Synchronization
+#### On Synchronization
 In order for both peers to refer to the same key, the keys to use must be 
 synchronized between each message. The simplest way to do so is using a key 
 book and referring to the used key by the page number.
-
-> The Python implementation provided has support for key page generation.
 
 ### Security Considerations
 There are a few points to consider, to ensure maximal confidentiality:
@@ -113,26 +111,23 @@ There are a few points to consider, to ensure maximal confidentiality:
 * Every peer *must* destroy the key directly after usage
 * Only two peers *should* have the same key
 
-## Usage
+## Usage As Executable
 ```$ practical.py COMMAND [KEY TEXT...]```
 
 ### Commands
-* `-d` Decrypts the given text
-* `-e` Encrypts the given text
-* `-b` Generates a random key block
-* `-p` Generates a random key page
-* `-h` Shows the usage text
-* `-l` Shows the license
-* `-v` Shows the version
+* `-d, --decrypt` Decrypts the given text
+* `-e, --encrypt` Encrypts the given text
+* `-b, --generate-block` Generates a random key block
+* `-p, --generate-page ` Generates a random key page
 
 ### Examples
-```$ practical.py -encrypt XXXXX HELLO```
+```$ practical.py --encrypt XXXXX HELLO```
 
-```$ practical.py -decrypt XXXXX YV255```
+```$ practical.py --decrypt XXXXX YV255```
 
-```$ practical.py -generate-block```
+```$ practical.py --generate-block```
 
-```$ practical.py -generate-page```
+```$ practical.py --generate-page```
 
 ## Usage As Library
 The Python modul exports the `Practical` class.
