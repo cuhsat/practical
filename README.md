@@ -89,7 +89,7 @@ Repeat with the next symbol if needed.
 
 For more information on randomness, please see [1].
 
-#### On Distribution
+#### On Key Distribution
 Key distribution should be done directly after the key generation. It is
 advised to create the keys by hand. Write down the generated keys to two
 pieces of paper or books. The pages can be marked with page numbers for
@@ -98,7 +98,7 @@ easier locating of the key blocks later.
 > It is advised to not use a computer system or any other electronic device to
 > generate or distribute the keys.
 
-#### On Synchronization
+#### On Key Synchronization
 In order for both peers to refer to the same key, the keys to use must be 
 synchronized between each message. The simplest way to do so is using a key 
 book and referring to the used key by the page number.
@@ -111,53 +111,48 @@ There are a few points to consider, to ensure maximal confidentiality:
 * Every peer *must* destroy the key directly after usage
 * Only two peers *should* have the same key
 
-## Usage As Executable
+## Usage as Executable
 ```$ practical.py COMMAND [KEY TEXT...]```
 
 ### Commands
-* `-b, --generate-block` Generates a random key block
-* `-p, --generate-page ` Generates a random key page
-* `-d, --decrypt` Decrypts the given text
-* `-e, --encrypt` Encrypts the given text
+* `-d, --decrypt`
+* `-e, --encrypt`
+* `-b, --generate-block`
+* `-p, --generate-page`
 
 ### Examples
 ```$ practical.py --encrypt XXXXX HELLO```
 
 ```$ practical.py --decrypt XXXXX YV255```
 
-```$ practical.py --generate-block```
-
-```$ practical.py --generate-page```
-
-## Usage As Library
+## Usage as Library
 The Python modul exports the `Practical` class.
 
-### Practical.encrypt(text, key)
+### Exports
+
+#### Practical.encrypt(text, key)
 Returns the given `text` encrypted with the given `key` as string.
 
-> Please note, that the key must have the same length as the text.
-
-### Practical.decrypt(text, key)
+#### Practical.decrypt(text, key)
 Returns the given `text` decrypted with the given `key` as string.
 
-> Please note, that the key must have the same length as the text.
-
-### Practical.generate_block(size)
+#### Practical.generate_block(size)
 Returns a new random key block of the given `size` as string.
 
-### Practical.generate_page(size, cols, rows)
+#### Practical.generate_page(size, cols, rows)
 Returns a new random key page with the given `size`, `cols`, `rows` as string.
 
-### Example
+### Examples
 ```python
 from practical import Practical
 
-cipher = Practical()
+print(Practical().encrypt("HELLO", "XXXX"))
+```
 
-text, key = "Hello", cipher.generate_block(5)
+```python
+from practical import Practical
 
-text = cipher.encrypt(text, key)
-text = cipher.decrypt(text, key)
+print(Practical().decrypt("YV255", "XXXX"))
 ```
 
 ### Unit Tests
