@@ -115,10 +115,10 @@ There are a few points to consider, to ensure maximal confidentiality:
 ```$ practical.py COMMAND [KEY TEXT...]```
 
 ### Commands
-* `-d, --decrypt`
-* `-e, --encrypt`
 * `-b, --generate-block`
 * `-p, --generate-page`
+* `-e, --encrypt`
+* `-d, --decrypt`
 
 ### Examples
 ```$ practical.py --encrypt XXXXX HELLO```
@@ -128,7 +128,7 @@ There are a few points to consider, to ensure maximal confidentiality:
 ## Usage as Library
 The Python modul exports the `Practical` class.
 
-### Exports
+### Class Methods
 
 #### Practical.encrypt(text, key)
 Returns the given `text` encrypted with the given `key` as string.
