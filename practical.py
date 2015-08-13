@@ -31,7 +31,7 @@ import random
 import sys
 
 
-__all__, __version__ = ["Practical"], "0.1.2"
+__all__, __version__ = ["Practical"], "0.2.0"
 
 
 class Practical(object):
@@ -89,36 +89,28 @@ class Practical(object):
         """
         return self.__crypt(text, key, lambda x, y: (x - y))
 
-    def generate_block(self, size=5):
+    def key(self, size=5, cols=5, rows=15):
         """
-        Returns a new random key block.
+        Returns a new random key.
         """
-        block, r = "", random.SystemRandom()
-
-        for i in range(size):
-            x = r.randint(0, 5)
-            y = r.randint(0, 5)
-
-            block += self.table[y][x]
-
-        return block
-
-    def generate_page(self, size=5, cols=5, rows=15):
-        """
-        Returns a new random key page.
-        """
-        page = ""
+        key, r = "", random.SystemRandom()
 
         for row in range(rows):
             for col in range(cols):
-                page += self.generate_block(size) + " "
+                for i in range(size):
+                    x = r.randint(0, 5)
+                    y = r.randint(0, 5)
+
+                    key += self.table[y][x]
+                else:
+                    key += " "
             else:
-                page += "\n"
+                key += "\n"
 
             if (row + 1) % 5 == 0:
-                page += "\n"
+                key += "\n"
 
-        return page.rstrip()
+        return key.rstrip()
 
 
 def main(script, command="--help", key=None, *text):
@@ -126,12 +118,9 @@ def main(script, command="--help", key=None, *text):
     Usage: %s COMMAND [KEY TEXT...]
 
     Commands:
-      -b, --generate-block   Generates a random key block
-      -p, --generate-page    Generates a random key page
-
-      -d, --decrypt   Decrypts the given text
       -e, --encrypt   Encrypts the given text
-
+      -d, --decrypt   Decrypts the given text
+      -k, --key       Shows a new random key
       -h, --help      Shows this text
       -l, --license   Shows the license
       -v, --version   Shows the version
@@ -150,17 +139,14 @@ def main(script, command="--help", key=None, *text):
         elif command in ("-v", "--version"):
             print("Practical Cipher " + __version__)
 
-        elif command in ("-d", "--decrypt") and key and text:
-            print(Practical().decrypt(" ".join(text), key))
-
         elif command in ("-e", "--encrypt") and key and text:
             print(Practical().encrypt(" ".join(text), key))
 
-        elif command in ("-b", "--generate-block"):
-            print(Practical().generate_block())
+        elif command in ("-d", "--decrypt") and key and text:
+            print(Practical().decrypt(" ".join(text), key))
 
-        elif command in ("-p", "--generate-page"):
-            print(Practical().generate_page())
+        elif command in ("-k", "--key"):
+            print(Practical().key())
 
         else:
             print("Unknown command or parameter not given.")

@@ -1,5 +1,5 @@
 # Practical ![Build](https://travis-ci.org/cuhsat/practical.svg)
-The Practical Cipher `0.1.2`
+The Practical Cipher `0.2.0`
 
 A one-time pad variant for easy manual application. Based on a 6x6 conversion
 table supporting alphanumeric symbols. Random key generation can be done with
@@ -27,6 +27,7 @@ The conversion table with the default symbol arrangement:
 4   Y Z 0 1 2 3
 5   4 5 6 7 8 9
 ```
+
 ### Encryption
 Encryption is done in six easy steps:
 
@@ -99,8 +100,8 @@ easier locating of the key blocks later.
 > generate or distribute the keys.
 
 #### On Key Synchronization
-In order for both peers to refer to the same key, the keys to use must be 
-synchronized between each message. The simplest way to do so is using a key 
+In order for both peers to refer to the same key, the keys to use must be
+synchronized between each message. The simplest way to do so is using a key
 book and referring to the used key by the page number.
 
 ### Security Considerations
@@ -115,15 +116,16 @@ There are a few points to consider, to ensure maximal confidentiality:
 ```$ practical.py COMMAND [KEY TEXT...]```
 
 ### Commands
-* `-b, --generate-block`
-* `-p, --generate-page`
 * `-e, --encrypt`
 * `-d, --decrypt`
+* `-k, --key`
 
 ### Examples
 ```$ practical.py --encrypt XXXXX HELLO```
 
 ```$ practical.py --decrypt XXXXX YV255```
+
+```$ practical.py --key```
 
 ## Usage as Library
 The Python modul exports the `Practical` class.
@@ -136,11 +138,8 @@ Returns the given `text` encrypted with the given `key` as string.
 #### Practical.decrypt(text, key)
 Returns the given `text` decrypted with the given `key` as string.
 
-#### Practical.generate_block(size)
-Returns a new random key block of the given `size` as string.
-
-#### Practical.generate_page(size, cols, rows)
-Returns a new random key page with the given `size`, `cols`, `rows` as string.
+#### Practical.key(size, cols, rows)
+Returns a new random key of the given `size`, `cols` and `rows` as string.
 
 ### Examples
 ```python
@@ -155,6 +154,12 @@ from practical import Practical
 print(Practical().decrypt("YV255", "XXXX"))
 ```
 
+```python
+from practical import Practical
+
+print(Practical().key())
+```
+
 ### Unit Tests
 The [pytest](https://pytest.org/) modul is required for unit testing.
 
@@ -167,7 +172,7 @@ Anyone is free to copy, modify, publish, use, compile, sell, or distribute
 this software, either in source code form or as a compiled binary, for any
 purpose, commercial or non-commercial, and by any means.
 
-[Christian Uhsat](https://github.com/cuhsat), June 2015
+[Christian Uhsat](https://github.com/cuhsat)
 
 ----
 [1] [Randomness for crypto](https://www.cs.berkeley.edu/~daw/rnd/)
