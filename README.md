@@ -1,5 +1,5 @@
 # Practical ![Build](https://img.shields.io/travis/cuhsat/practical.svg)
-The Practical Cipher `0.2.0`
+The Practical Cipher `0.2.1`
 
 A one-time pad variant for easy manual application. Based on a 6x6 conversion
 table supporting alphanumeric symbols. Random key generation can be done with
@@ -115,7 +115,7 @@ There are a few points to consider, to ensure maximal confidentiality:
 ## Usage as Executable
 ```$ practical.py COMMAND [KEY TEXT...]```
 
-### Commands
+### Script Commands
 * `-e, --encrypt`
 * `-d, --decrypt`
 * `-k, --key`

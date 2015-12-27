@@ -42,7 +42,7 @@ class TestPractical:
     """
     The Practical Cipher unit tests.
     """
-    vectors = [
+    VECTORS = [
         ("AAAAAA", "999999", "999999"),
         ("999999", "999999", "AAAAAA"),
         ("A9A9A9", "A9A9A9", "AAAAAA"),
@@ -64,14 +64,14 @@ class TestPractical:
         """
         Encryption test.
         """
-        for source, expect, key in self.vectors:
+        for source, expect, key in self.VECTORS:
             assert Practical().encrypt(source, key) == expect
 
     def test_decrypt(self):
         """
         Decryption test.
         """
-        for expect, source, key in self.vectors:
+        for expect, source, key in self.VECTORS:
             assert Practical().decrypt(source, key) == expect
 
     def test_key(self):
@@ -79,6 +79,21 @@ class TestPractical:
         Key generation test.
         """
         assert re.match("^([A-Z0-9]|\s)+$", Practical().key())
+
+    def test_fuzzy(self):
+        """
+        Fuzzy data test.
+        """
+        practical = Practical()
+
+        for length in range(1000):
+            text = practical.key(length, 1, 1)
+            key  = practical.key(length, 1, 1)
+
+            ct = practical.encrypt(text, key)
+            pt = practical.decrypt(ct, key)
+
+            assert pt == text
 
 
 if __name__ == "__main__":
