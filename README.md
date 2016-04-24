@@ -27,6 +27,8 @@ The conversion table with the default symbol arrangement:
 4   Y Z 0 1 2 3
 5   4 5 6 7 8 9
 ```
+> The used symbols might be replaced with `meta` symbols e.g. like `not`,
+> which might alter prior or following statements.
 
 ### Encryption
 Encryption is done in six easy steps:
