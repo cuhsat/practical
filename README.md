@@ -5,7 +5,7 @@ A one-time pad variant for easy manual application. Based on a 6x6 conversion
 table supporting alphanumeric symbols. Random key generation can be done with
 one normal gambling dice (d6).
 
-An implementation in pure [Python](https://www.python.org) is provided.
+An implementation in Python is provided.
 
 ## Specification
 
@@ -18,7 +18,7 @@ alphabet from `A` to `Z` and than the numbers from `0` to `9`.
 
 The conversion table with the default symbol arrangement:
 ```
-    0 1 2 3 4 5  X
+    0 1 2 3 4 5
 
 0   A B C D E F
 1   G H I J K L
@@ -27,7 +27,6 @@ The conversion table with the default symbol arrangement:
 4   Y Z 0 1 2 3
 5   4 5 6 7 8 9
 
-Y
 ```
 > The used symbols might be replaced with `meta` symbols e.g. like `not`,
 > which might alter prior or following statements.
@@ -38,8 +37,8 @@ Encryption is done in six easy steps:
 1. Convert the key and plain text symbol to its _x_ and _y_ positions
 2. Add the keys _x_ position to the plain texts _x_ position
 3. Add the keys _y_ position to the plain texts _y_ position
-4. Divide the _x_ position by 6 and use the remainder as the new _x_ position
-5. Divide the _y_ position by 6 and use the remainder as the new _y_ position
+4. Divide the _x_ position by _6_ and use the remainder as the new _x_ position
+5. Divide the _y_ position by _6_ and use the remainder as the new _y_ position
 6. Convert the so calculated _x_ and _y_ positions to the cipher text symbol
 
 Repeat with the next symbol if needed.
@@ -62,8 +61,8 @@ Decryption is done in six easy steps:
 1. Convert the key and cipher text symbol to its _x_ and _y_ positions
 2. Substract the keys _x_ position from the cipher texts _x_ position
 3. Substract the keys _y_ position from the cipher texts _y_ position
-4. Divide the _x_ position by 6 and use the remainder as the new _x_ position
-5. Divide the _y_ position by 6 and use the remainder as the new _y_ position
+4. Divide the _x_ position by _6_ and use the remainder as the new _x_ position
+5. Divide the _y_ position by _6_ and use the remainder as the new _y_ position
 6. Convert the so calculated _x_ and _y_ positions to the plain text symbol
 
 Repeat with the next symbol if needed.
@@ -83,8 +82,8 @@ Repeat with the next symbol if needed.
 ### Key Generation
 Key generation is done in three easy steps:
 
-1. Throw a six-sided gambling dice, use the result minus 1 as the _x_ position
-2. Throw a six-sided gambling dice, use the result minus 1 as the _y_ position
+1. Throw a six-sided gambling dice, use the result minus _1_ as the _x_ position
+2. Throw a six-sided gambling dice, use the result minus _1_ as the _y_ position
 3. Convert the _x_ and _y_ positions to the key symbol
 
 Repeat with the next symbol if needed.
@@ -117,14 +116,16 @@ There are a few points to consider, to ensure maximal confidentiality:
 * Only two peers *should* have the same key
 
 ## Implementation
+
+### Usage
 ```$ practical.py COMMAND [KEY TEXT...]```
 
-Available script commands:
+Available commands:
 * `-e, --encrypt`
 * `-d, --decrypt`
 * `-k, --key`
 
-### Examples
+#### Example
 ```
 $ practical.py --encrypt XXXXX HELLO
 ```
@@ -136,36 +137,27 @@ $ practical.py --key
 ```
 
 ### Exports
-This Python modul exports the `Practical` class.
+This Python script exports the `Practical` class.
 
-#### Practical.encrypt(text, key)
+** Practical.encrypt(text, key) **
 Returns the given `text` encrypted with the given `key` as string.
-```python
-from practical import Practical
 
-print(Practical().encrypt("HELLO", "XXXX"))
-```
-
-#### Practical.decrypt(text, key)
+** Practical.decrypt(text, key) **
 Returns the given `text` decrypted with the given `key` as string.
-```python
-from practical import Practical
 
-print(Practical().decrypt("YV255", "XXXX"))
-```
-
-#### Practical.key(size=5, cols=5, rows=15)
+** Practical.key(size=5, cols=5, rows=15) **
 Returns a new random key of the given `size`, `cols` and `rows` as string.
+
+#### Example
 ```python
 from practical import Practical
 
-print(Practical().key())
+practical = Practical()
+
+print(practical.encrypt("HELLO", "XXXX"))
+print(practical.decrypt("YV255", "XXXX"))
+print(practical.key())
 ```
-
-### Tests
-The [pytest](https://pytest.org/) modul is required for unit testing.
-
-```$ practical_test.py [...]```
 
 ## License
 This is free and unencumbered software released into the public domain.
@@ -175,4 +167,4 @@ this software, either in source code form or as a compiled binary, for any
 purpose, commercial or non-commercial, and by any means.
 
 ----
-[1] [Randomness for crypto](https://www.cs.berkeley.edu/~daw/rnd/)
+[1] [Crypto-strength randomness](https://www.cs.berkeley.edu/~daw/rnd/)
