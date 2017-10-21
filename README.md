@@ -139,12 +139,15 @@ $ practical.py --key
 This Python script exports the `Practical` class.
 
 **Practical.encrypt(text, key)**
+
 Returns the given `text` encrypted with the given `key` as string.
 
 **Practical.decrypt(text, key)**
+
 Returns the given `text` decrypted with the given `key` as string.
 
 **Practical.key(size=5, cols=5, rows=15)**
+
 Returns a new random key of the given `size`, `cols` and `rows` as string.
 
 #### Example
