@@ -1,6 +1,4 @@
-# Practical ![Build](https://img.shields.io/travis/cuhsat/practical.svg)
-The Practical Cipher
-
+# The Practical Cipher ![Build](https://img.shields.io/travis/cuhsat/practical.svg) 
 A one-time pad variant for easy manual application. Based on a 6x6 conversion
 table supporting alphanumeric symbols. Random key generation can be done with
 one normal gambling dice (d6).
