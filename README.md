@@ -26,7 +26,6 @@ The conversion table with the default symbol arrangement:
 3   S T U V W X
 4   Y Z 0 1 2 3
 5   4 5 6 7 8 9
-
 ```
 > The used symbols might be replaced with `meta` symbols e.g. like `not`,
 > which might alter prior or following statements.
@@ -139,13 +138,13 @@ $ practical.py --key
 ### Exports
 This Python script exports the `Practical` class.
 
-** Practical.encrypt(text, key) **
+**Practical.encrypt(text, key)**
 Returns the given `text` encrypted with the given `key` as string.
 
-** Practical.decrypt(text, key) **
+**Practical.decrypt(text, key)**
 Returns the given `text` decrypted with the given `key` as string.
 
-** Practical.key(size=5, cols=5, rows=15) **
+**Practical.key(size=5, cols=5, rows=15)**
 Returns a new random key of the given `size`, `cols` and `rows` as string.
 
 #### Example
