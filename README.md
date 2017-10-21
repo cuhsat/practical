@@ -1,5 +1,5 @@
 # Practical ![Build](https://img.shields.io/travis/cuhsat/practical.svg)
-The Practical Cipher `0.2.1`
+The Practical Cipher
 
 A one-time pad variant for easy manual application. Based on a 6x6 conversion
 table supporting alphanumeric symbols. Random key generation can be done with
@@ -18,7 +18,7 @@ alphabet from `A` to `Z` and than the numbers from `0` to `9`.
 
 The conversion table with the default symbol arrangement:
 ```
-    0 1 2 3 4 5
+    0 1 2 3 4 5  X
 
 0   A B C D E F
 1   G H I J K L
@@ -26,6 +26,8 @@ The conversion table with the default symbol arrangement:
 3   S T U V W X
 4   Y Z 0 1 2 3
 5   4 5 6 7 8 9
+
+Y
 ```
 > The used symbols might be replaced with `meta` symbols e.g. like `not`,
 > which might alter prior or following statements.
@@ -44,14 +46,14 @@ Repeat with the next symbol if needed.
 
 #### Example
 ```
-   H  E  L  L  O  Plain text as symbols
-  11 04 15 15 22  Plain text as positions
+   H  E  L  L  O  Plain text (symbols)
+  11 04 15 15 22  Plain text (positions)
 
-   X  X  X  X  X  Key as symbols
-+ 35 35 35 35 35  Key as positions
+   X  X  X  X  X  Key (symbols)
++ 35 35 35 35 35  Key (positions)
 
-   Y  V  2  2  5  Cipher text as symbols
-= 40 33 44 44 51  Cipher text as positions
+   Y  V  2  2  5  Cipher text (symbols)
+= 40 33 44 44 51  Cipher text (positions)
 ```
 
 ### Decryption
@@ -68,14 +70,14 @@ Repeat with the next symbol if needed.
 
 #### Example
 ```
-   Y  V  2  2  5  Cipher text as symbols
-  40 33 44 44 51  Cipher text as positions
+   Y  V  2  2  5  Cipher text (symbols)
+  40 33 44 44 51  Cipher text (positions)
 
-   X  X  X  X  X  Key as symbols
-- 35 35 35 35 35  Key as positions
+   X  X  X  X  X  Key (symbols)
+- 35 35 35 35 35  Key (positions)
 
-   H  E  L  L  O  Plain text as symbols
-= 11 04 15 15 22  Plain text as positions
+   H  E  L  L  O  Plain text (symbols)
+= 11 04 15 15 22  Plain text (positions)
 ```
 
 ### Key Generation
@@ -114,55 +116,53 @@ There are a few points to consider, to ensure maximal confidentiality:
 * Every peer *must* destroy the key directly after usage
 * Only two peers *should* have the same key
 
-## Usage as Executable
+## Implementation
 ```$ practical.py COMMAND [KEY TEXT...]```
 
-### Script Commands
+Available script commands:
 * `-e, --encrypt`
 * `-d, --decrypt`
 * `-k, --key`
 
 ### Examples
-```$ practical.py --encrypt XXXXX HELLO```
+```
+$ practical.py --encrypt XXXXX HELLO
+```
+```
+$ practical.py --decrypt XXXXX YV255
+```
+```
+$ practical.py --key
+```
 
-```$ practical.py --decrypt XXXXX YV255```
-
-```$ practical.py --key```
-
-## Usage as Library
-The Python modul exports the `Practical` class.
-
-### Class Methods
+### Exports
+This Python modul exports the `Practical` class.
 
 #### Practical.encrypt(text, key)
 Returns the given `text` encrypted with the given `key` as string.
-
-#### Practical.decrypt(text, key)
-Returns the given `text` decrypted with the given `key` as string.
-
-#### Practical.key(size, cols, rows)
-Returns a new random key of the given `size`, `cols` and `rows` as string.
-
-### Examples
 ```python
 from practical import Practical
 
 print(Practical().encrypt("HELLO", "XXXX"))
 ```
 
+#### Practical.decrypt(text, key)
+Returns the given `text` decrypted with the given `key` as string.
 ```python
 from practical import Practical
 
 print(Practical().decrypt("YV255", "XXXX"))
 ```
 
+#### Practical.key(size=5, cols=5, rows=15)
+Returns a new random key of the given `size`, `cols` and `rows` as string.
 ```python
 from practical import Practical
 
 print(Practical().key())
 ```
 
-### Unit Tests
+### Tests
 The [pytest](https://pytest.org/) modul is required for unit testing.
 
 ```$ practical_test.py [...]```
@@ -173,8 +173,6 @@ This is free and unencumbered software released into the public domain.
 Anyone is free to copy, modify, publish, use, compile, sell, or distribute
 this software, either in source code form or as a compiled binary, for any
 purpose, commercial or non-commercial, and by any means.
-
-[Christian Uhsat](mailto:christian@uhsat.de)
 
 ----
 [1] [Randomness for crypto](https://www.cs.berkeley.edu/~daw/rnd/)

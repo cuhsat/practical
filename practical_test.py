@@ -35,7 +35,7 @@ from practical import Practical
 try:
     import pytest
 except ImportError:
-    sys.exit("Requires pytest (https://pytest.org)")
+    sys.exit("Requires pytest")
 
 
 class TestPractical:

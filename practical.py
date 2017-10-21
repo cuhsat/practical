@@ -31,7 +31,7 @@ import random
 import sys
 
 
-__all__, __version__ = ["Practical"], "0.2.1"
+__all__, __version__ = ["Practical"], "0.2.2"
 
 
 class Practical(object):
